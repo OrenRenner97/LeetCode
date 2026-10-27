@@ -13,6 +13,7 @@ make -C native clean
 |------|---------|-----------|------|
 | `c/pair_sum.c` | `pair_sum` | 1. Two Sum | хэш-таблица с открытой адресацией, Fibonacci hashing, ключ и индекс в одной ячейке (один промах кэша на пробу), `calloc` для ленивого обнуления |
 | `c/unique_window.c` | `longest_unique_window` | 3. Longest Substring… | LastIndex на массиве по сжатым id (`buf[x]` = позиция + 1, `calloc` = «не встречался»); при k > 1 счётчики |
+| `c/sorted_union.c` | `kth_two_i64`, `kth_many_i64` | 4. Median of Two Sorted Arrays | разрез на int64; K массивов — массив указателей + длин, бинпоиск по значению; `upper_bound` **без ветвлений** (cmov), середина `(lo>>1)+(hi>>1)+(lo&hi&1)` без переполнения int64 |
 | `c/digits.c` | `add_digits_u64` | 2. Add Two Numbers | `_addcarry_u64`, то есть инструкция ADC: перенос несёт флаг процессора; хвост без переноса копируется `memcpy` |
 
 ## Соглашения ABI

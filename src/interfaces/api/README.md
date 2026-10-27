@@ -29,6 +29,7 @@ uv run uvicorn interfaces.api.main:app --reload
 | GET | `/backends` | system | какие реализации алгоритмов есть на сервере |
 | POST | `/v1/fintech/reconcile` | fintech/reconciliation | сверка платежей со счетами (Two Sum) |
 | POST | `/v1/fintech/antifraud/card-testing` | fintech/antifraud | перебор украденных карт (Longest Substring) |
+| POST | `/v1/fintech/fair-price` | fintech/fair_price | справедливая цена по площадкам + контроль нерыночных сделок (Median of Two Sorted Arrays) |
 | POST | `/v1/crypto/ledger/simulate` | crypto/ledger | прогон mint/burn/transfer на uint256 |
 | POST | `/v1/crypto/ledger/audit` | crypto/ledger | Σ балансов == total_supply (carry-save) |
 | GET | `/v1/crypto/units/parse` | crypto/ledger | токены → wei |

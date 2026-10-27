@@ -14,12 +14,16 @@
 | `to_digits(n, base)` / `from_digits(d, base)` | `arithmetic/digits.py` | 2. Add Two Numbers | int ↔ цифры | O(n²) | — |
 | `longest_unique_window(seq, max_repeats=1)` | `sliding_window/unique_window.py` | [3. Longest Substring…](../../problems/0003_longest_substring_without_repeating_characters/README.md) | `[start, end)` самого длинного окна, где каждый элемент встречается ≤ k раз | O(n) | python, numba, c, numpy, cuda |
 | `longest_unique_window_batch(values, offsets, max_repeats=1)` | `sliding_window/unique_window_batch.py` | 3. Longest Substring… | то же для многих последовательностей сразу (CSR) | O(n) | python, numba, numpy, cuda |
+| `median_of_sorted(*arrays)` | `binary_search/sorted_union.py` | [4. Median of Two Sorted Arrays](../../problems/0004_median_of_two_sorted_arrays/README.md) | медиана объединения отсортированных последовательностей без слияния; пусто → `None` | O(log min(m,n)) для 1–2, O(k·log n·log R) для 3+ | numba, c, python (нативные — только для int-массивов numpy) |
+| `kth_of_sorted(*arrays, k)` | `binary_search/sorted_union.py` | 4. Median of Two Sorted Arrays | k-й элемент (перцентиль) объединения: сам выбирает разрез или бинпоиск по значению | как у `median_of_sorted` | как у `median_of_sorted` |
+| `kth_of_two_sorted(a, b, k)` | `binary_search/sorted_union.py` | 4. Median of Two Sorted Arrays | k-й элемент объединения двух, любые сравнимые типы | O(log min(m,n)) | numba, c, python |
+| `kth_of_many_sorted(arrays, k)` | `binary_search/sorted_union.py` | 4. Median of Two Sorted Arrays | k-й элемент объединения k последовательностей целых (бинпоиск по значению) | O(k·log n·log R) | c, numba, python |
 
 Импорт: `from algos import find_pair_with_sum, add_digits` или `from algos.arithmetic import sum_limbs`.
 
 ## Как устроено
 
-**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `sliding_window/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
+**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `sliding_window/`, `binary_search/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
 
 **Выбор реализации — `_dispatch.py`:**
 

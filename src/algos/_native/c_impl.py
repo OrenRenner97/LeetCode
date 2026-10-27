@@ -52,3 +52,27 @@ def longest_unique_window_c(seq, max_repeats: int):
     if _lib.longest_unique_window(ids.ctypes.data, ids.shape[0], m, max_repeats, ctypes.byref(s), ctypes.byref(e)) < 0:
         raise MemoryError("longest_unique_window: не удалось выделить буфер")
     return s.value, e.value
+
+
+# ---------- k-й элемент объединения отсортированных (native/c/sorted_union.c) ----------
+_lib.kth_two_i64.argtypes = [ctypes.c_void_p, ctypes.c_int64, ctypes.c_void_p, ctypes.c_int64, ctypes.c_int64, _i64p, _i64p]
+_lib.kth_two_i64.restype = ctypes.c_int
+_lib.kth_many_i64.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_int64, ctypes.c_int64]
+_lib.kth_many_i64.restype = ctypes.c_int64
+
+
+def cut_c(a, b, need: int):
+    # a, b — C-непрерывные int64 (готовит публичная функция). Контракт как у python-эталона _cut.
+    left, right = ctypes.c_int64(), ctypes.c_int64()
+    rc = _lib.kth_two_i64(a.ctypes.data, a.shape[0], b.ctypes.data, b.shape[0], need,
+                          ctypes.byref(left), ctypes.byref(right))
+    if rc < 0:
+        raise AssertionError("недостижимо: разрез существует для любого входа")
+    return left.value, (right.value if rc else None)
+
+
+def kth_many_c(arrays, k: int):
+    # Массив указателей на начала массивов: сами данные не копируются.
+    ptrs = np.array([a.ctypes.data for a in arrays], dtype=np.uint64)
+    lens = np.array([a.shape[0] for a in arrays], dtype=np.int64)
+    return _lib.kth_many_i64(ptrs.ctypes.data, lens.ctypes.data, len(arrays), k)

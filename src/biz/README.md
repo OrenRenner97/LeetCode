@@ -8,6 +8,7 @@
 |---------|--------|------------|----------|-----|
 | fintech | [reconciliation](fintech/reconciliation/README.md) | сверка платежей со счетами: один платёж закрывает два счёта | 1. Two Sum → `find_pair_with_sum` | `POST /v1/fintech/reconcile` |
 | fintech | [antifraud](fintech/antifraud/README.md) | перебор украденных карт (card testing) с одного IP/устройства | 3. Longest Substring… → `longest_unique_window` | `POST /v1/fintech/antifraud/card-testing` |
+| fintech | [fair_price](fintech/fair_price/README.md) | справедливая цена бумаги по нескольким площадкам, отсев сбойных фидов, контроль нерыночных сделок | 4. Median of Two Sorted Arrays → `kth_of_sorted` | `POST /v1/fintech/fair-price` |
 | crypto | [ledger](crypto/ledger/README.md) | учёт ERC-20-токена на uint256, аудит Σ балансов | 2. Add Two Numbers → `add_digits`, `sum_limbs` | `/v1/crypto/...` |
 
 ## Правила

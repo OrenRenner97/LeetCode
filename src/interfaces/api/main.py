@@ -35,6 +35,10 @@ TAGS = [
     {"name": "fintech/antifraud",
      "description": "Антифрод: перебор украденных карт (card testing). "
                     "Алгоритм: **LeetCode 3. Longest Substring Without Repeating Characters** → `algos.longest_unique_window`."},
+    {"name": "fintech/fair_price",
+     "description": "Справедливая цена инструмента по нескольким площадкам: медиана сделок, коридор p25–p75, "
+                    "отсев зависших и сбойных фидов, контроль нерыночных сделок. "
+                    "Алгоритм: **LeetCode 4. Median of Two Sorted Arrays** → `algos.kth_of_sorted`."},
     {"name": "crypto/ledger",
      "description": "Учёт ERC-20-токена на uint256 как в EVM. "
                     "Алгоритм: **LeetCode 2. Add Two Numbers** → `algos.add_digits` / `sum_limbs`."},

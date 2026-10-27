@@ -1,6 +1,7 @@
 """Two Sum на numba: та же хэш-таблица, что в native/c/pair_sum.c, но JIT из Python."""
 import numba as nb
 import numpy as np
+from numba.typed import List
 
 _GOLDEN = np.uint64(0x9E3779B97F4A7C15)
 
@@ -286,3 +287,68 @@ def factorize_int64(a):
             m += 1
         out[i] = slot_id[h]
     return out, m
+
+
+# ---------- k-й элемент объединения отсортированных (LeetCode 4) ----------
+@nb.njit(cache=True, nogil=True)
+def _cut(a, b, need):
+    # Разрез из solution.py, обобщённый на любое need. Возвращает (ok, left, has_right, right):
+    # numba нужен один тип результата, поэтому «справа пусто» — флаг, а не None.
+    if a.shape[0] > b.shape[0]:
+        a, b = b, a
+    m, n = a.shape[0], b.shape[0]
+    lo, hi = max(0, need - n), min(need, m)
+    while lo <= hi:
+        i = (lo + hi) // 2
+        j = need - i
+        if i > 0 and j < n and a[i - 1] > b[j]:
+            hi = i - 1
+        elif j > 0 and i < m and b[j - 1] > a[i]:
+            lo = i + 1
+        else:
+            if i == 0:
+                left = b[j - 1]
+            elif j == 0:
+                left = a[i - 1]
+            else:
+                left = max(a[i - 1], b[j - 1])
+            if i == m and j == n:
+                return True, left, False, left
+            if i == m:
+                right = b[j]
+            elif j == n:
+                right = a[i]
+            else:
+                right = min(a[i], b[j])
+            return True, left, True, right
+    return False, b[0], False, b[0]  # недостижимо (см. algos.binary_search._cut); b не пуст: need >= 1
+
+
+def cut_numba(a, b, need: int):
+    ok, left, has_right, right = _cut(a, b, need)
+    if not ok:
+        raise AssertionError("недостижимо: разрез существует для любого входа")
+    return int(left), (int(right) if has_right else None)
+
+
+@nb.njit(cache=True, nogil=True)
+def _kth_many(arrs, k):
+    lo, hi = arrs[0][0], arrs[0][-1]
+    for a in arrs:
+        lo = min(lo, a[0])
+        hi = max(hi, a[-1])
+    while lo < hi:
+        mid = (lo >> 1) + (hi >> 1) + (lo & hi & 1)  # floor((lo + hi) / 2) без переполнения int64
+        c = 0
+        for a in arrs:
+            c += np.searchsorted(a, mid, side="right")
+        if c > k:
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo
+
+
+def kth_many_numba(arrays, k: int):
+    # typed.List стоит ~2 µs на массив: это и есть цена входа в numba для списка массивов.
+    return int(_kth_many(List(arrays), k))
