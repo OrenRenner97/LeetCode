@@ -352,3 +352,39 @@ def _kth_many(arrs, k):
 def kth_many_numba(arrays, k: int):
     # typed.List стоит ~2 µs на массив: это и есть цена входа в numba для списка массивов.
     return int(_kth_many(List(arrays), k))
+
+
+# ---------- палиндромы, Манакер (LeetCode 5) ----------
+# Виртуальная строка из 2n + 1 позиций: чётные — разделители (равны всегда), нечётные — элементы.
+from .mirror_codes import encode  # noqa: E402
+
+
+@nb.njit(cache=True, nogil=True)
+def _palindrome_radii(a, b, use_mirror, out):
+    m = out.shape[0]
+    c = 0
+    r = 0
+    for i in range(m):
+        if use_mirror and (i & 1) and a[i >> 1] != b[i >> 1]:
+            out[i] = 0  # центр не переходит сам в себя
+            continue
+        k = 0
+        if i < r:
+            k = min(r - i, out[2 * c - i])
+        lo = i - k - 1
+        hi = i + k + 1
+        while lo >= 0 and hi < m and ((lo & 1) == 0 or a[lo >> 1] == b[hi >> 1]):
+            lo -= 1
+            hi += 1
+        k = hi - i - 1
+        out[i] = k
+        if i + k > r:
+            c = i
+            r = i + k
+
+
+def palindrome_radii_numba(seq, mirror):
+    a, b, use_mirror = encode(seq, mirror)
+    out = np.empty(2 * a.shape[0] + 1, dtype=np.int64)
+    _palindrome_radii(a, b, use_mirror, out)
+    return out

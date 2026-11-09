@@ -76,3 +76,19 @@ def kth_many_c(arrays, k: int):
     ptrs = np.array([a.ctypes.data for a in arrays], dtype=np.uint64)
     lens = np.array([a.shape[0] for a in arrays], dtype=np.int64)
     return _lib.kth_many_i64(ptrs.ctypes.data, lens.ctypes.data, len(arrays), k)
+
+
+# ---------- палиндромы, Манакер (native/c/palindromes.c) ----------
+from .mirror_codes import encode  # noqa: E402
+
+for _name in ("palindrome_radii_i32", "palindrome_radii_i64"):
+    getattr(_lib, _name).argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_int64, ctypes.c_int, ctypes.c_void_p]
+    getattr(_lib, _name).restype = None
+
+
+def palindrome_radii_c(seq, mirror):
+    a, b, use_mirror = encode(seq, mirror)
+    out = np.empty(2 * a.shape[0] + 1, dtype=np.int64)
+    fn = _lib.palindrome_radii_i32 if a.dtype.itemsize == 4 else _lib.palindrome_radii_i64
+    fn(a.ctypes.data, b.ctypes.data, a.shape[0], int(use_mirror), out.ctypes.data)
+    return out

@@ -34,6 +34,10 @@ uv run uvicorn interfaces.api.main:app --reload
 | POST | `/v1/crypto/ledger/audit` | crypto/ledger | Σ балансов == total_supply (carry-save) |
 | GET | `/v1/crypto/units/parse` | crypto/ledger | токены → wei |
 | GET | `/v1/crypto/units/format` | crypto/ledger | wei → токены |
+| GET | `/v1/biotech/cloning/enzymes` | biotech/cloning | каталог ферментов рестрикции |
+| POST | `/v1/biotech/cloning/restriction-map` | biotech/cloning | сайты рестрикции, единственные резаки, фрагменты (Longest Palindromic Substring) |
+| POST | `/v1/biotech/cloning/candidates` | biotech/cloning | ферменты для вставки: один разрез в полилинкере, вставку не режут |
+| POST | `/v1/biotech/cloning/primer-check` | biotech/cloning | самокомплементарность праймеров (self-dimer) |
 
 ## Соглашения
 

@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from fastapi.routing import APIRoute
 
 from . import errors
-from .routers import crypto, fintech, system
+from .routers import biotech, crypto, fintech, system
 
 API_VERSION = "v1"
 
@@ -42,6 +42,10 @@ TAGS = [
     {"name": "crypto/ledger",
      "description": "Учёт ERC-20-токена на uint256 как в EVM. "
                     "Алгоритм: **LeetCode 2. Add Two Numbers** → `algos.add_digits` / `sum_limbs`."},
+    {"name": "biotech/cloning",
+     "description": "Клонирование ДНК: карта сайтов рестрикции, фрагменты на геле, выбор ферментов для вставки, "
+                    "самокомплементарность праймеров. "
+                    "Алгоритм: **LeetCode 5. Longest Palindromic Substring** → `algos.palindrome_radii` (Манакер)."},
 ]
 
 
@@ -62,3 +66,4 @@ errors.install(app)
 app.include_router(system.router)
 app.include_router(fintech.router, prefix=f"/{API_VERSION}")
 app.include_router(crypto.router, prefix=f"/{API_VERSION}")
+app.include_router(biotech.router, prefix=f"/{API_VERSION}")

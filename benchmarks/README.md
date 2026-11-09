@@ -17,6 +17,8 @@ uv run benchmarks/<файл>.py
 | `longest_substring_backends.py` | 3 | одна последовательность, batch по источникам, детектор целиком по этапам, потоковый режим |
 | `median_two_sorted_backends.py` | 4 | разрез по backend'ам (накладные расходы вызова), K шардов, `FairPricer` целиком |
 | `median_two_sorted.py` | 4 | учебные альтернативы: разрез, k-й элемент, бинпоиск по значению, слияния; три вида входа |
+| `longest_palindrome_backends.py` | 5 | `palindrome_radii` по backend'ам (буквы, `"aaa…"`, ДНК с комплементом), разбивка вызова, `find_sites` и `check_primer` целиком |
+| `longest_palindrome.py` | 5 | учебные альтернативы: перебор, DP, расширение от центра, GrowByTwo, хэши + бинпоиск, Manacher; три вида входа |
 
 ## `bench.py`
 

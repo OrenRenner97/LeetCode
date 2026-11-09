@@ -27,3 +27,4 @@
 | 2 | [Add Two Numbers](0002_add_two_numbers/README.md) | сложение с переносом | `algos.add_digits`, `sub_digits`, `sum_limbs` | [uint256-леджер](../src/biz/crypto/ledger/README.md) |
 | 3 | [Longest Substring Without Repeating Characters](0003_longest_substring_without_repeating_characters/README.md) | скользящее окно | `algos.longest_unique_window` | [антифрод: card testing](../src/biz/fintech/antifraud/README.md) |
 | 4 | [Median of Two Sorted Arrays](0004_median_of_two_sorted_arrays/README.md) | бинпоиск по разрезу | `algos.median_of_sorted`, `kth_of_sorted`, `kth_of_two_sorted`, `kth_of_many_sorted` | [справедливая цена по площадкам](../src/biz/fintech/fair_price/README.md) |
+| 5 | [Longest Palindromic Substring](0005_longest_palindromic_substring/README.md) | расширение от центра, Manacher | `algos.longest_palindrome`, `palindrome_radii`, `maximal_palindromes` | [клонирование ДНК](../src/biz/biotech/cloning/README.md) |

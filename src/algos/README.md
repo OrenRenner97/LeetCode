@@ -18,12 +18,15 @@
 | `kth_of_sorted(*arrays, k)` | `binary_search/sorted_union.py` | 4. Median of Two Sorted Arrays | k-й элемент (перцентиль) объединения: сам выбирает разрез или бинпоиск по значению | как у `median_of_sorted` | как у `median_of_sorted` |
 | `kth_of_two_sorted(a, b, k)` | `binary_search/sorted_union.py` | 4. Median of Two Sorted Arrays | k-й элемент объединения двух, любые сравнимые типы | O(log min(m,n)) | numba, c, python |
 | `kth_of_many_sorted(arrays, k)` | `binary_search/sorted_union.py` | 4. Median of Two Sorted Arrays | k-й элемент объединения k последовательностей целых (бинпоиск по значению) | O(k·log n·log R) | c, numba, python |
+| `longest_palindrome(seq, mirror=None)` | `palindromes/manacher.py` | [5. Longest Palindromic Substring](../../problems/0005_longest_palindromic_substring/README.md) | `[start, end)` самого длинного (самого левого) палиндрома; `mirror` — палиндром с отображением (ДНК-комплемент); нет → `None` | O(n) | numba, c, python (нативные — строки и int-массивы) |
+| `palindrome_radii(seq, mirror=None)` | `palindromes/manacher.py` | 5. Longest Palindromic Substring | массив Manacher: длина максимального палиндрома на каждом из 2n + 1 центров | O(n) | numba, c, python |
+| `maximal_palindromes(seq, min_length=2, mirror=None)` | `palindromes/manacher.py` | 5. Longest Palindromic Substring | все максимальные палиндромы длины ≥ `min_length`, по одному на центр | O(n + k log k) | numba, c, python |
 
 Импорт: `from algos import find_pair_with_sum, add_digits` или `from algos.arithmetic import sum_limbs`.
 
 ## Как устроено
 
-**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `sliding_window/`, `binary_search/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
+**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `sliding_window/`, `binary_search/`, `palindromes/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
 
 **Выбор реализации — `_dispatch.py`:**
 
