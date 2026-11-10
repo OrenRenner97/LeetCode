@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from fastapi.routing import APIRoute
 
 from . import errors
-from .routers import biotech, crypto, fintech, system
+from .routers import biotech, crypto, edtech, fintech, system
 
 API_VERSION = "v1"
 
@@ -46,6 +46,10 @@ TAGS = [
      "description": "Клонирование ДНК: карта сайтов рестрикции, фрагменты на геле, выбор ферментов для вставки, "
                     "самокомплементарность праймеров. "
                     "Алгоритм: **LeetCode 5. Longest Palindromic Substring** → `algos.palindrome_radii` (Манакер)."},
+    {"name": "edtech/railfence",
+     "description": "Шифр «изгородь» для заданий по криптографии и CTF: шифрование со сдвигом, картинка зигзага, "
+                    "взлом без ключа с оценкой уверенности. Защитой данных не является. "
+                    "Алгоритм: **LeetCode 6. Zigzag Conversion** → `algos.zigzag_encode` / `zigzag_decode`."},
 ]
 
 
@@ -67,3 +71,4 @@ app.include_router(system.router)
 app.include_router(fintech.router, prefix=f"/{API_VERSION}")
 app.include_router(crypto.router, prefix=f"/{API_VERSION}")
 app.include_router(biotech.router, prefix=f"/{API_VERSION}")
+app.include_router(edtech.router, prefix=f"/{API_VERSION}")

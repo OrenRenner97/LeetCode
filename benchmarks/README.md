@@ -19,6 +19,7 @@ uv run benchmarks/<файл>.py
 | `median_two_sorted.py` | 4 | учебные альтернативы: разрез, k-й элемент, бинпоиск по значению, слияния; три вида входа |
 | `longest_palindrome_backends.py` | 5 | `palindrome_radii` по backend'ам (буквы, `"aaa…"`, ДНК с комплементом), разбивка вызова, `find_sites` и `check_primer` целиком |
 | `longest_palindrome.py` | 5 | учебные альтернативы: перебор, DP, расширение от центра, GrowByTwo, хэши + бинпоиск, Manacher; три вида входа |
+| `zigzag.py` | 6 | учебные альтернативы: симуляция (dict / сетка / списки), формула индексов, сортировка по строке, срезы с шагом; r = 2, 3, √n, n/2 |
 
 ## `bench.py`
 

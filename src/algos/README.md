@@ -21,12 +21,16 @@
 | `longest_palindrome(seq, mirror=None)` | `palindromes/manacher.py` | [5. Longest Palindromic Substring](../../problems/0005_longest_palindromic_substring/README.md) | `[start, end)` самого длинного (самого левого) палиндрома; `mirror` — палиндром с отображением (ДНК-комплемент); нет → `None` | O(n) | numba, c, python (нативные — строки и int-массивы) |
 | `palindrome_radii(seq, mirror=None)` | `palindromes/manacher.py` | 5. Longest Palindromic Substring | массив Manacher: длина максимального палиндрома на каждом из 2n + 1 центров | O(n) | numba, c, python |
 | `maximal_palindromes(seq, min_length=2, mirror=None)` | `palindromes/manacher.py` | 5. Longest Palindromic Substring | все максимальные палиндромы длины ≥ `min_length`, по одному на центр | O(n + k log k) | numba, c, python |
+| `zigzag_encode(seq, rows, mode="zigzag")` | `permutations/zigzag.py` | [6. Zigzag Conversion](../../problems/0006_zigzag_conversion/README.md) | зигзаг-перестановка (построчное чтение), тип результата = тип входа; `mode="snake"` — края дважды (snake-драфт) | O(n) при любом `rows` | python |
+| `zigzag_decode(seq, rows, mode="zigzag")` | `permutations/zigzag.py` | 6. Zigzag Conversion | обратная перестановка: `decode(encode(x)) == x` | O(n) | python |
+| `zigzag_rows(n, rows, mode="zigzag")` / `zigzag_order(n, rows, mode="zigzag")` | `permutations/zigzag.py` | 6. Zigzag Conversion | номер строки каждой позиции / перестановка индексов | O(n) | — |
+| `zigzag_split(seq, rows, mode="zigzag")` | `permutations/zigzag.py` | 6. Zigzag Conversion | сами строки: раздача по `rows` корзинам змейкой | O(n + rows) | — |
 
 Импорт: `from algos import find_pair_with_sum, add_digits` или `from algos.arithmetic import sum_limbs`.
 
 ## Как устроено
 
-**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `sliding_window/`, `binary_search/`, `palindromes/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
+**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `sliding_window/`, `binary_search/`, `palindromes/`, `permutations/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
 
 **Выбор реализации — `_dispatch.py`:**
 

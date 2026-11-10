@@ -38,6 +38,9 @@ uv run uvicorn interfaces.api.main:app --reload
 | POST | `/v1/biotech/cloning/restriction-map` | biotech/cloning | сайты рестрикции, единственные резаки, фрагменты (Longest Palindromic Substring) |
 | POST | `/v1/biotech/cloning/candidates` | biotech/cloning | ферменты для вставки: один разрез в полилинкере, вставку не режут |
 | POST | `/v1/biotech/cloning/primer-check` | biotech/cloning | самокомплементарность праймеров (self-dimer) |
+| POST | `/v1/edtech/railfence/encrypt` | edtech/railfence | шифр «изгородь» со сдвигом + картинка (Zigzag Conversion) |
+| POST | `/v1/edtech/railfence/decrypt` | edtech/railfence | расшифровка по ключу |
+| POST | `/v1/edtech/railfence/crack` | edtech/railfence | взлом без ключа: кандидаты, повороты, уверенность |
 
 ## Соглашения
 
