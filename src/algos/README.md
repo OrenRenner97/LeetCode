@@ -12,6 +12,8 @@
 | `sub_digits(a, b, base=10)` | `arithmetic/digits.py` | 2. Add Two Numbers | длинное вычитание (a ≥ b) | O(n) | python |
 | `sum_limbs(rows, base=2**64)` | `arithmetic/sum_limbs.py` | 2. Add Two Numbers | сумма N длинных чисел, carry-save | O(N·L) | python, numpy, numba, cuda |
 | `to_digits(n, base)` / `from_digits(d, base)` | `arithmetic/digits.py` | 2. Add Two Numbers | int ↔ цифры | O(n²) | — |
+| `reverse_digits(x, base=10, width=None, bits=None, signed=True)` | `arithmetic/reverse.py` | [7. Reverse Integer](../../problems/0007_reverse_integer/README.md) | цифры в обратном порядке; `width` — в фиксированной ширине (обратимо); не влезает в `bits` бит → `None` | O(d) | — |
+| `int_range(bits, signed=True)` / `is_digit_palindrome(x, base=10)` | `arithmetic/reverse.py` | 7. Reverse Integer | границы целого на `bits` бит / палиндром по цифрам (LeetCode 9) | O(1) / O(d) | — |
 | `longest_unique_window(seq, max_repeats=1)` | `sliding_window/unique_window.py` | [3. Longest Substring…](../../problems/0003_longest_substring_without_repeating_characters/README.md) | `[start, end)` самого длинного окна, где каждый элемент встречается ≤ k раз | O(n) | python, numba, c, numpy, cuda |
 | `longest_unique_window_batch(values, offsets, max_repeats=1)` | `sliding_window/unique_window_batch.py` | 3. Longest Substring… | то же для многих последовательностей сразу (CSR) | O(n) | python, numba, numpy, cuda |
 | `median_of_sorted(*arrays)` | `binary_search/sorted_union.py` | [4. Median of Two Sorted Arrays](../../problems/0004_median_of_two_sorted_arrays/README.md) | медиана объединения отсортированных последовательностей без слияния; пусто → `None` | O(log min(m,n)) для 1–2, O(k·log n·log R) для 3+ | numba, c, python (нативные — только для int-массивов numpy) |

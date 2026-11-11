@@ -141,7 +141,9 @@ def test_linear_time(backend, traversal):
     for rows in (2, 1000) if traversal == "by_rows" else (2, 1000, 500_000):
         t = time.perf_counter()
         assert zigzag_decode(zigzag_encode(s, rows, backend=backend), rows, backend=backend) == s
-        assert time.perf_counter() - t < 2.0, rows
+        # Ловим квадрат (минуты), а не меряем скорость: by_periods на rows=2 — 500 тыс. периодов,
+        # ~2 s на ноутбуке и дрожит от частоты. Лимит 2.0 давал ложные падения.
+        assert time.perf_counter() - t < 6.0, rows
 
 
 def test_validation():

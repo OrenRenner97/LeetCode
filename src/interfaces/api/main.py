@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from fastapi.routing import APIRoute
 
 from . import errors
-from .routers import biotech, crypto, edtech, fintech, system
+from .routers import biotech, crypto, edtech, fintech, infra, system
 
 API_VERSION = "v1"
 
@@ -50,6 +50,10 @@ TAGS = [
      "description": "Шифр «изгородь» для заданий по криптографии и CTF: шифрование со сдвигом, картинка зигзага, "
                     "взлом без ключа с оценкой уверенности. Защитой данных не является. "
                     "Алгоритм: **LeetCode 6. Zigzag Conversion** → `algos.zigzag_encode` / `zigzag_decode`."},
+    {"name": "infra/rowkeys",
+     "description": "Ключи строк для HBase/Bigtable/Cassandra из последовательных id: развёрнутый ключ против "
+                    "hotspot'а, обратимость за счёт фиксированной ширины, проверка переполнения колонки. "
+                    "Алгоритм: **LeetCode 7. Reverse Integer** → `algos.reverse_digits`."},
 ]
 
 
@@ -72,3 +76,4 @@ app.include_router(fintech.router, prefix=f"/{API_VERSION}")
 app.include_router(crypto.router, prefix=f"/{API_VERSION}")
 app.include_router(biotech.router, prefix=f"/{API_VERSION}")
 app.include_router(edtech.router, prefix=f"/{API_VERSION}")
+app.include_router(infra.router, prefix=f"/{API_VERSION}")

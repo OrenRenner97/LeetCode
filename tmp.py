@@ -1,59 +1,40 @@
-# 6. Zigzag Conversion
-# https://leetcode.com/problems/zigzag-conversion/
+# 7. Reverse Integer
+# https://leetcode.com/problems/reverse-integer/
 #
-# Строку s пишут «зигзагом» в numRows строк: сверху вниз по первому столбцу, потом по диагонали
-# вверх вправо до первой строки, снова вниз и т.д. Затем читают построчно, слева направо.
-# Вернуть получившуюся строку.
+# Дано 32-битное знаковое целое x. Вернуть x с цифрами в обратном порядке.
+# Если результат выходит за диапазон 32-битного знакового целого [-2^31, 2^31 - 1], вернуть 0.
 #
-# Пример для s = "PAYPALISHIRING", numRows = 3:
+# Считаем, что среда НЕ позволяет хранить 64-битные целые (знаковые и беззнаковые):
+# промежуточные значения тоже должны помещаться в 32 бита.
 #
-#   P   A   H   N
-#   A P L S I I G
-#   Y   I   R
-#
-# Построчно: "PAHN" + "APLSIIG" + "YIR" = "PAHNAPLSIIGYIR"
-#
-# Example 1: s = "PAYPALISHIRING", numRows = 3 -> "PAHNAPLSIIGYIR"
-# Example 2: s = "PAYPALISHIRING", numRows = 4 -> "PINALSIGYAHRPI"
-#
-#   P     I    N
-#   A   L S  I G
-#   Y A   H R
-#   P     I
-#
-# Example 3: s = "A", numRows = 1 -> "A"
+# Example 1: x = 123  -> 321
+# Example 2: x = -123 -> -321
+# Example 3: x = 120  -> 21
 #
 # Constraints:
-#   1 <= s.length <= 1000
-#   s состоит из английских букв (строчных и заглавных), ',' и '.'
-#   1 <= numRows <= 1000
+#   -2^31 <= x <= 2^31 - 1
 
 
 class Solution:
-    def convert(self, s: str, numRows: int) -> str:
-        dict_with_rows = {i: "" for i in range(numRows)}
-        action_sign = 1
-        current_row = 0
-        for index, char in enumerate(s):
-            if current_row in dict_with_rows:
-                dict_with_rows[current_row] += char
-            else:
-                dict_with_rows[current_row] = char
-            if current_row == 0:
-                action_sign = 1
-            elif current_row == numRows - 1:
-                action_sign = -1
-            current_row += action_sign
-        return "".join(dict_with_rows.values())
+    def reverse(self, x: int) -> int:
+        reversed_x = int(str(abs(x))[::-1])
+        if x > 0 and (x.bit_length() > 31 or reversed_x.bit_length() > 31):
+            return 0
+        if x < 0 and (x.bit_length() >= 32 or reversed_x.bit_length() >= 32):
+            return 0
+        return reversed_x * (-1 if x < 0 else 1)
 
 
 if __name__ == "__main__":
     s = Solution()
-    assert s.convert("PAYPALISHIRING", 3) == "PAHNAPLSIIGYIR"
-    assert s.convert("PAYPALISHIRING", 4) == "PINALSIGYAHRPI"
-    assert s.convert("A", 1) == "A"
-    assert s.convert("AB", 1) == "AB"             # одна строка: зигзага нет
-    assert s.convert("AB", 5) == "AB"             # строк больше, чем символов
-    assert s.convert("ABCD", 2) == "ACBD"         # две строки: чётные и нечётные позиции
-    assert s.convert("ABCDE", 4) == "ABCED"       # E уже на диагонали вверх
+    assert s.reverse(123) == 321
+    assert s.reverse(-123) == -321
+    assert s.reverse(120) == 21
+    assert s.reverse(0) == 0
+    assert s.reverse(1534236469) == 0          # 9646324351 > 2^31 - 1
+    assert s.reverse(-2147483648) == 0         # минимум: разворот 8463847412 не влезает
+    assert s.reverse(1463847412) == 2147483641 # влезает впритык
+    assert s.reverse(-1463847412) == -2147483641
+    assert s.reverse(-1563847412) == 0         # -2147483651 < -2^31
+    assert s.reverse(2147483647) == 0         # 7463847412 не влезает
     print("OK")

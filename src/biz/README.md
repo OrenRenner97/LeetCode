@@ -11,6 +11,7 @@
 | fintech | [fair_price](fintech/fair_price/README.md) | справедливая цена бумаги по нескольким площадкам, отсев сбойных фидов, контроль нерыночных сделок | 4. Median of Two Sorted Arrays → `kth_of_sorted` | `POST /v1/fintech/fair-price` |
 | biotech | [cloning](biotech/cloning/README.md) | карта рестрикции ДНК, фрагменты на геле, выбор ферментов для клонирования, самокомплементарность праймеров | 5. Longest Palindromic Substring → `palindrome_radii`, `longest_palindrome` (Манакер с комплементом) | `/v1/biotech/cloning/...` |
 | edtech | [railfence](edtech/railfence/README.md) | задания на шифр «изгородь»: шифрование со сдвигом, картинка, взлом без ключа с оценкой уверенности (CTF, курсы) | 6. Zigzag Conversion → `zigzag_encode`, `zigzag_decode` | `/v1/edtech/railfence/...` |
+| infra | [rowkeys](infra/rowkeys/README.md) | ключи строк HBase/Bigtable из последовательных id: развёрнутый ключ против hotspot'а, обратимость (ширина), переполнение колонки | 7. Reverse Integer → `reverse_digits` | `/v1/infra/rowkeys/...` |
 | crypto | [ledger](crypto/ledger/README.md) | учёт ERC-20-токена на uint256, аудит Σ балансов | 2. Add Two Numbers → `add_digits`, `sum_limbs` | `/v1/crypto/...` |
 
 ## Правила

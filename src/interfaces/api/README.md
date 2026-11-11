@@ -41,6 +41,9 @@ uv run uvicorn interfaces.api.main:app --reload
 | POST | `/v1/edtech/railfence/encrypt` | edtech/railfence | шифр «изгородь» со сдвигом + картинка (Zigzag Conversion) |
 | POST | `/v1/edtech/railfence/decrypt` | edtech/railfence | расшифровка по ключу |
 | POST | `/v1/edtech/railfence/crack` | edtech/railfence | взлом без ключа: кандидаты, повороты, уверенность |
+| POST | `/v1/infra/rowkeys/encode` | infra/rowkeys | развёрнутые ключи строк для id, ошибки переполнения по каждому id (Reverse Integer) |
+| POST | `/v1/infra/rowkeys/decode` | infra/rowkeys | id по ключам |
+| POST | `/v1/infra/rowkeys/hotspot` | infra/rowkeys | нагрузка по регионам: прямой ключ против развёрнутого |
 
 ## Соглашения
 

@@ -20,6 +20,7 @@ uv run benchmarks/<файл>.py
 | `longest_palindrome_backends.py` | 5 | `palindrome_radii` по backend'ам (буквы, `"aaa…"`, ДНК с комплементом), разбивка вызова, `find_sites` и `check_primer` целиком |
 | `longest_palindrome.py` | 5 | учебные альтернативы: перебор, DP, расширение от центра, GrowByTwo, хэши + бинпоиск, Manacher; три вида входа |
 | `zigzag.py` | 6 | учебные альтернативы: симуляция (dict / сетка / списки), формула индексов, сортировка по строке, срезы с шагом; r = 2, 3, √n, n/2 |
+| `reverse_integer.py` | 7 | учебные альтернативы: строка, сравнение строк, pop/push с проверкой, накопление в отрицательных (C), обёртка mod 2³² (Java); random / small / overflow |
 
 ## `bench.py`
 
