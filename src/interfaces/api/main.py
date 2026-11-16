@@ -54,6 +54,10 @@ TAGS = [
      "description": "Ключи строк для HBase/Bigtable/Cassandra из последовательных id: развёрнутый ключ против "
                     "hotspot'а, обратимость за счёт фиксированной ширины, проверка переполнения колонки. "
                     "Алгоритм: **LeetCode 7. Reverse Integer** → `algos.reverse_digits`."},
+    {"name": "infra/envconfig",
+     "description": "Аудит числовых переменных окружения: что прочитают C-сервис (`atoi`/`strtol`) и Python "
+                    "(`int()`), тихо отброшенные хвосты (`30s`), мусор → 0, переполнение типа, расхождения. "
+                    "Алгоритм: **LeetCode 8. String to Integer (atoi)** → `algos.parse_int_prefix`."},
 ]
 
 

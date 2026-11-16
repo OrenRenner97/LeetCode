@@ -57,3 +57,27 @@ def test_validation_422():
     assert client.post(f"{URL}/encode", json={"ids": []}).status_code == 422
     assert client.post(f"{URL}/encode", json={"ids": [1], "scheme": {"storage": "int128"}}).status_code == 422
     assert client.post(f"{URL}/hotspot", json={"start": 0, "count": 0}).status_code == 422
+
+
+ENV_URL = "/v1/infra/envconfig/audit"
+
+
+def test_envconfig_audit():
+    body = {"env": {"WORKERS": "auto", "TIMEOUT_SEC": "30s", "PORT": "8080"},
+            "settings": [{"name": "WORKERS", "min": 1}, {"name": "TIMEOUT_SEC"},
+                         {"name": "PORT", "bits": 16, "signed": False}, {"name": "CACHE_MB", "required": False}]}
+    data = client.post(ENV_URL, json=body).json()
+    got = [(f["name"], f["issue"], f["c_value"], f["py_value"], f["diverges"]) for f in data["findings"]]
+    assert got == [("WORKERS", "no_digits", 0, None, True), ("TIMEOUT_SEC", "trailing", 30, None, True),
+                   ("PORT", "ok", 8080, 8080, False), ("CACHE_MB", "ok", None, None, False)]
+    assert data["problems"] == 2
+
+
+def test_envconfig_default_settings_int32():
+    data = client.post(ENV_URL, json={"env": {"BIG": "99999999999", "OK": " 3 "}}).json()
+    assert [(f["name"], f["issue"], f["c_value"]) for f in data["findings"]] == [
+        ("BIG", "clamped", 2**31 - 1), ("OK", "ok", 3)]
+
+
+def test_envconfig_validation():
+    assert client.post(ENV_URL, json={"env": {}, "settings": [{"name": "X", "bits": 65}]}).status_code == 422

@@ -30,3 +30,4 @@
 | 5 | [Longest Palindromic Substring](0005_longest_palindromic_substring/README.md) | расширение от центра, Manacher | `algos.longest_palindrome`, `palindrome_radii`, `maximal_palindromes` | [клонирование ДНК](../src/biz/biotech/cloning/README.md) |
 | 6 | [Zigzag Conversion](0006_zigzag_conversion/README.md) | симуляция, период 2(r − 1), срезы с шагом | `algos.zigzag_encode`, `zigzag_decode`, `zigzag_rows`, `zigzag_order`, `zigzag_split` | [шифр «изгородь» для CTF](../src/biz/edtech/railfence/README.md) |
 | 7 | [Reverse Integer](0007_reverse_integer/README.md) | разворот цифр, переполнение int32 | `algos.reverse_digits`, `int_range`, `is_digit_palindrome` | [ключи строк против hotspot'а](../src/biz/infra/rowkeys/README.md) |
+| 8 | [String to Integer (atoi)](0008_string_to_integer_atoi/README.md) | разбор строки по фазам, прижатие к int32 | `algos.parse_int_prefix` | [аудит переменных окружения](../src/biz/infra/envconfig/README.md) |
