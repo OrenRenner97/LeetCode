@@ -32,3 +32,4 @@
 | 7 | [Reverse Integer](0007_reverse_integer/README.md) | разворот цифр, переполнение int32 | `algos.reverse_digits`, `int_range`, `is_digit_palindrome` | [ключи строк против hotspot'а](../src/biz/infra/rowkeys/README.md) |
 | 8 | [String to Integer (atoi)](0008_string_to_integer_atoi/README.md) | разбор строки по фазам, прижатие к int32 | `algos.parse_int_prefix` | [аудит переменных окружения](../src/biz/infra/envconfig/README.md) |
 | 9 | [Palindrome Number](0009_palindrome_number/README.md) | разворот половины числа | `algos.arithmetic.is_digit_palindrome`, `next_digit_palindrome`, `prev_digit_palindrome` | — (слишком простая) |
+| 10 | [Regular Expression Matching](0010_regular_expression_matching/README.md) | ДП по (i, j), НКА Томпсона | `algos.is_match`, `compile_pattern` (битовая маска, без ReDoS) | [сценарии мошенничества в сессиях](../src/biz/fintech/scenarios/README.md) |

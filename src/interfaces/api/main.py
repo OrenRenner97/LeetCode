@@ -39,6 +39,10 @@ TAGS = [
      "description": "Справедливая цена инструмента по нескольким площадкам: медиана сделок, коридор p25–p75, "
                     "отсев зависших и сбойных фидов, контроль нерыночных сделок. "
                     "Алгоритм: **LeetCode 4. Median of Two Sorted Arrays** → `algos.kth_of_sorted`."},
+    {"name": "fintech/scenarios",
+     "description": "Антифрод по сценариям событий сессии: захват аккаунта (новое устройство → смена телефона → вывод), "
+                    "подбор пароля, сессии-скрипты. Правила пишет аналитик, время линейно на любом правиле (без ReDoS). "
+                    "Алгоритм: **LeetCode 10. Regular Expression Matching** → `algos.automata` (НКА)."},
     {"name": "crypto/ledger",
      "description": "Учёт ERC-20-токена на uint256 как в EVM. "
                     "Алгоритм: **LeetCode 2. Add Two Numbers** → `algos.add_digits` / `sum_limbs`."},

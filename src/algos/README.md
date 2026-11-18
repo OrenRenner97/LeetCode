@@ -17,6 +17,7 @@
 | `int_range(bits, signed=True)` | `arithmetic/reverse.py` | 7. Reverse Integer | границы целого на `bits` бит: `(−2³¹, 2³¹ − 1)` | O(1) | — |
 | `is_digit_palindrome(x, base=10, width=None)` | `arithmetic/palindrome.py` | [9. Palindrome Number](../../problems/0009_palindrome_number/README.md) | палиндром по цифрам; отрицательные — нет; `width` — с ведущими нулями («0110») | O(d) | — |
 | `next_digit_palindrome(x, base=10)` / `prev_digit_palindrome(x, base=10)` | `arithmetic/palindrome.py` | 9. Palindrome Number | ближайший палиндром ≥ x / ≤ x отражением левой половины; `prev` для x < 0 → `None` | O(d) | — |
+| `compile_pattern(pattern, escape="\\")` / `is_match(s, pattern, escape="\\")` | `automata/simple_regex.py` | [10. Regular Expression Matching](../../problems/0010_regular_expression_matching/README.md) | шаблоны `.` и `x*` на всю строку, линейно на любом входе (НКА, состояния — битовая маска, без ReDoS); экранирование `\.`; `SimplePattern.from_tokens` — любые последовательности; `start`/`step`/`accepts` — пошагово по потоку | O(len(s) · k / w) | — |
 | `longest_unique_window(seq, max_repeats=1)` | `sliding_window/unique_window.py` | [3. Longest Substring…](../../problems/0003_longest_substring_without_repeating_characters/README.md) | `[start, end)` самого длинного окна, где каждый элемент встречается ≤ k раз | O(n) | python, numba, c, numpy, cuda |
 | `longest_unique_window_batch(values, offsets, max_repeats=1)` | `sliding_window/unique_window_batch.py` | 3. Longest Substring… | то же для многих последовательностей сразу (CSR) | O(n) | python, numba, numpy, cuda |
 | `median_of_sorted(*arrays)` | `binary_search/sorted_union.py` | [4. Median of Two Sorted Arrays](../../problems/0004_median_of_two_sorted_arrays/README.md) | медиана объединения отсортированных последовательностей без слияния; пусто → `None` | O(log min(m,n)) для 1–2, O(k·log n·log R) для 3+ | numba, c, python (нативные — только для int-массивов numpy) |
@@ -35,7 +36,7 @@
 
 ## Как устроено
 
-**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `sliding_window/`, `binary_search/`, `palindromes/`, `permutations/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
+**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `automata/`, `sliding_window/`, `binary_search/`, `palindromes/`, `permutations/`, позже `graphs/`, `dp/`, `two_pointers/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
 
 **Выбор реализации — `_dispatch.py`:**
 

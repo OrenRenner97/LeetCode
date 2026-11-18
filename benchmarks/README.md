@@ -23,6 +23,7 @@ uv run benchmarks/<файл>.py
 | `reverse_integer.py` | 7 | учебные альтернативы: строка, сравнение строк, pop/push с проверкой, накопление в отрицательных (C), обёртка mod 2³² (Java); random / small / overflow |
 | `string_to_integer_atoi.py` | 8 | учебные альтернативы: фазы по индексу, фазы с остановкой у границы (C), регулярка, str-методы (`lstrip`), конечный автомат; typical / garbage / long |
 | `palindrome_number.py` | 9 | учебные альтернативы: строка (целиком / один раз / половины), полный и половинный разворот, срезание концов, два указателя по цифрам; random / positive / palindrome |
+| `regular_expression_matching.py` | 10 | учебные альтернативы: рекурсия с кэшем и без, таблица ДП, две строки, НКА Томпсона, `re.fullmatch`; random / matching / adversarial + рост времени на `a*a*…c` |
 
 ## `bench.py`
 

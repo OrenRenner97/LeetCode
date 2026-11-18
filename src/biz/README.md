@@ -8,6 +8,7 @@
 |---------|--------|------------|----------|-----|
 | fintech | [reconciliation](fintech/reconciliation/README.md) | сверка платежей со счетами: один платёж закрывает два счёта | 1. Two Sum → `find_pair_with_sum` | `POST /v1/fintech/reconcile` |
 | fintech | [antifraud](fintech/antifraud/README.md) | перебор украденных карт (card testing) с одного IP/устройства | 3. Longest Substring… → `longest_unique_window` | `POST /v1/fintech/antifraud/card-testing` |
+| fintech | [scenarios](fintech/scenarios/README.md) | мошеннические сценарии в сессиях: захват аккаунта, подбор пароля, сессии-скрипты; правила аналитика без ReDoS, тревога до вывода денег | 10. Regular Expression Matching → `algos.automata` (НКА, пошагово) | `/v1/fintech/scenarios/...` |
 | fintech | [fair_price](fintech/fair_price/README.md) | справедливая цена бумаги по нескольким площадкам, отсев сбойных фидов, контроль нерыночных сделок | 4. Median of Two Sorted Arrays → `kth_of_sorted` | `POST /v1/fintech/fair-price` |
 | biotech | [cloning](biotech/cloning/README.md) | карта рестрикции ДНК, фрагменты на геле, выбор ферментов для клонирования, самокомплементарность праймеров | 5. Longest Palindromic Substring → `palindrome_radii`, `longest_palindrome` (Манакер с комплементом) | `/v1/biotech/cloning/...` |
 | edtech | [railfence](edtech/railfence/README.md) | задания на шифр «изгородь»: шифрование со сдвигом, картинка, взлом без ключа с оценкой уверенности (CTF, курсы) | 6. Zigzag Conversion → `zigzag_encode`, `zigzag_decode` | `/v1/edtech/railfence/...` |

@@ -1,40 +1,53 @@
-# 9. Palindrome Number
-# https://leetcode.com/problems/palindrome-number/
+# 10. Regular Expression Matching
+# https://leetcode.com/problems/regular-expression-matching/
 #
-# Дано целое x. Вернуть True, если x — палиндром (читается одинаково
-# слева направо и справа налево), иначе False.
+# Дана строка s и шаблон p. Реализовать сопоставление с поддержкой:
+#   '.' — любой один символ;
+#   '*' — ноль или больше повторений ПРЕДЫДУЩЕГО элемента.
+# Шаблон должен покрывать ВСЮ строку, а не её часть.
 #
-# Example 1: x = 121  -> True
-# Example 2: x = -121 -> False   ("-121" справа налево — "121-")
-# Example 3: x = 10   -> False   (справа налево — "01")
+# Example 1: s = "aa", p = "a"   -> False  ("a" не покрывает всю "aa")
+# Example 2: s = "aa", p = "a*"  -> True   ('*' повторяет 'a' дважды)
+# Example 3: s = "ab", p = ".*"  -> True   (".*" — ноль или больше любых символов)
 #
 # Constraints:
-#   -2^31 <= x <= 2^31 - 1
-#
-# Follow up: решить без перевода числа в строку.
+#   1 <= s.length <= 20
+#   1 <= p.length <= 20
+#   s состоит только из строчных английских букв
+#   p состоит только из строчных английских букв, '.' и '*'
+#   Перед каждым '*' гарантированно стоит допустимый символ
+from functools import cache
 
 
 class Solution:
-    def isPalindrome(self, x: int) -> bool:
-        return str(x) == str(x)[::-1]
+    def isMatch(self, s: str, p: str) -> bool:
+        @cache
+        def dfs(i: int, j: int) -> bool:
+            if j == len(p):
+                return i == len(s)
+            if j + 1 < len(p) and p[j + 1] == '*':
+                return dfs(i, j + 2) or (i < len(s) and (s[i] == p[j] or p[j] == '.') and dfs(i + 1, j))
+            if j < len(p) and p[j] == '.':
+                return dfs(i + 1, j + 1)
+            return i < len(s) and j < len(p) and s[i] == p[j] and dfs(i + 1, j + 1)
+        return dfs(0, 0)
 
 
 if __name__ == "__main__":
-    s = Solution()
-    assert s.isPalindrome(121) is True
-    assert s.isPalindrome(-121) is False
-    assert s.isPalindrome(10) is False
-    assert s.isPalindrome(0) is True
-    assert s.isPalindrome(7) is True
-    assert s.isPalindrome(11) is True
-    assert s.isPalindrome(1221) is True
-    assert s.isPalindrome(12321) is True
-    assert s.isPalindrome(123) is False
-    assert s.isPalindrome(100) is False            # нули в конце
-    assert s.isPalindrome(1001) is True            # нули в середине
-    assert s.isPalindrome(1000021) is False
-    assert s.isPalindrome(-1) is False             # любое отрицательное — нет
-    assert s.isPalindrome(2147483647) is False     # 2^31 - 1
-    assert s.isPalindrome(-2147483648) is False    # -2^31
-    assert s.isPalindrome(2147447412) is True      # палиндром у верхней границы
+    sol = Solution()
+    assert sol.isMatch("aa", "a") is False
+    assert sol.isMatch("aa", "a*") is True
+    assert sol.isMatch("ab", ".*") is True
+    assert sol.isMatch("aab", "c*a*b") is True              # c* — ноль повторений
+    assert sol.isMatch("mississippi", "mis*is*p*.") is False
+    assert sol.isMatch("mississippi", "mis*is*ip*.") is True
+    assert sol.isMatch("a", "ab*") is True                  # хвостовой x* может быть пустым
+    assert sol.isMatch("a", ".*..a*") is False
+    assert sol.isMatch("ab", ".*c") is False
+    assert sol.isMatch("aaa", "a*a") is True                # '*' не должна съесть всё жадно
+    assert sol.isMatch("aaa", "ab*a*c*a") is True
+    assert sol.isMatch("abcd", "d*") is False
+    assert sol.isMatch("a", "a.") is False                  # '.' — ровно один символ, не ноль
+    assert sol.isMatch("bbbba", ".*a*a") is True
+    assert sol.isMatch("aaaaaaaaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*c") is False  # экспонента у наивного перебора
     print("OK")
