@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from algos import reverse_digits
-from algos.arithmetic import int_range, is_digit_palindrome
+from algos.arithmetic import int_range
 from algos.arithmetic import reverse as reverse_module
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -108,12 +108,6 @@ def test_huge_numbers_use_generic_path():
     assert x.bit_length() > reverse_module._STR_MAX_BITS
     assert reverse_digits(x) == _ref(x)
     assert reverse_digits(x, width=6001) == _ref(x) * 10
-
-
-def test_palindrome():
-    assert is_digit_palindrome(121) and is_digit_palindrome(0) and is_digit_palindrome(7)
-    assert not is_digit_palindrome(-121) and not is_digit_palindrome(10) and not is_digit_palindrome(123)
-    assert is_digit_palindrome(0b1001, base=2) and not is_digit_palindrome(0b1000, base=2)
 
 
 def test_validation():

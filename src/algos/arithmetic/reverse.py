@@ -1,4 +1,4 @@
-"""Разворот цифр целого числа. LeetCode: 7. Reverse Integer (обобщённо) + 9. Palindrome Number.
+"""Разворот цифр целого числа. LeetCode: 7. Reverse Integer (обобщённо). Палиндромы (LeetCode 9) — palindrome.py.
 
 Отличия от LeetCode-версии:
 - результат, который не помещается в целое на `bits` бит, — `None`, а не 0: у LeetCode 0 — и «переполнение»,
@@ -59,12 +59,6 @@ def reverse_digits(x: int, *, base: int = 10, width: int | None = None, bits: in
     if bits is not None and not lo <= r <= hi:
         return None
     return r
-
-
-def is_digit_palindrome(x: int, *, base: int = 10) -> bool:
-    """Читается ли x одинаково с обеих сторон (LeetCode 9). Отрицательные — нет: «−121» ≠ «121−»."""
-    _check_int("x", x)
-    return x >= 0 and reverse_digits(x, base=base) == x
 
 
 def _reverse_abs(n: int, base: int) -> tuple[int, int]:

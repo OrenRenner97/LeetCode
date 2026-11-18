@@ -31,3 +31,4 @@
 | 6 | [Zigzag Conversion](0006_zigzag_conversion/README.md) | симуляция, период 2(r − 1), срезы с шагом | `algos.zigzag_encode`, `zigzag_decode`, `zigzag_rows`, `zigzag_order`, `zigzag_split` | [шифр «изгородь» для CTF](../src/biz/edtech/railfence/README.md) |
 | 7 | [Reverse Integer](0007_reverse_integer/README.md) | разворот цифр, переполнение int32 | `algos.reverse_digits`, `int_range`, `is_digit_palindrome` | [ключи строк против hotspot'а](../src/biz/infra/rowkeys/README.md) |
 | 8 | [String to Integer (atoi)](0008_string_to_integer_atoi/README.md) | разбор строки по фазам, прижатие к int32 | `algos.parse_int_prefix` | [аудит переменных окружения](../src/biz/infra/envconfig/README.md) |
+| 9 | [Palindrome Number](0009_palindrome_number/README.md) | разворот половины числа | `algos.arithmetic.is_digit_palindrome`, `next_digit_palindrome`, `prev_digit_palindrome` | — (слишком простая) |
