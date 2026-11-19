@@ -24,6 +24,7 @@ uv run benchmarks/<файл>.py
 | `string_to_integer_atoi.py` | 8 | учебные альтернативы: фазы по индексу, фазы с остановкой у границы (C), регулярка, str-методы (`lstrip`), конечный автомат; typical / garbage / long |
 | `palindrome_number.py` | 9 | учебные альтернативы: строка (целиком / один раз / половины), полный и половинный разворот, срезание концов, два указателя по цифрам; random / positive / palindrome |
 | `regular_expression_matching.py` | 10 | учебные альтернативы: рекурсия с кэшем и без, таблица ДП, две строки, НКА Томпсона, `re.fullmatch`; random / matching / adversarial + рост времени на `a*a*…c` |
+| `container_with_most_water.py` | 11 | учебные альтернативы: перебор, два указателя (с `max`/`min`, inline, с пропуском), сортировка по высоте (Python / numpy); random / increasing / equal / hill, n = 10³ и 10⁵ |
 
 ## `bench.py`
 
