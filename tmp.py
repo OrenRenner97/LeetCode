@@ -1,48 +1,58 @@
-# 11. Container With Most Water
-# https://leetcode.com/problems/container-with-most-water/
+# 12. Integer to Roman
+# https://leetcode.com/problems/integer-to-roman/
 #
-# Дан массив height длины n: n вертикальных линий, i-я идёт от (i, 0) до (i, height[i]).
-# Выбрать две линии, которые вместе с осью x образуют контейнер с наибольшим объёмом воды.
-# Вернуть этот максимальный объём.
+# Семь римских символов:
+#   I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000
 #
-# Объём контейнера между линиями i < j: (j - i) * min(height[i], height[j]).
-# Контейнер нельзя наклонять.
+# Число переводится в римскую запись по десятичным разрядам, от старшего к младшему:
+#   - если разряд не начинается с 4 или 9 — берём символ с наибольшим значением,
+#     не превосходящим остаток, дописываем его и вычитаем, затем повторяем;
+#   - если разряд начинается с 4 или 9 — используется вычитательная форма:
+#     4 = IV, 9 = IX, 40 = XL, 90 = XC, 400 = CD, 900 = CM (только эти шесть);
+#   - подряд можно ставить не больше трёх одинаковых символов-степеней десяти (I, X, C, M);
+#     V, L, D подряд не повторяются — для 4/9 нужна вычитательная форма.
 #
-# Example 1: height = [1,8,6,2,5,4,8,3,7] -> 49   (линии 1 и 8: ширина 7, высота min(8, 7) = 7)
-# Example 2: height = [1,1]               -> 1
+# Example 1: num = 3749 -> "MMMDCCXLIX"
+#   3000 = MMM, 700 = DCC, 40 = XL, 9 = IX
+# Example 2: num = 58   -> "LVIII"
+#   50 = L, 8 = VIII
+# Example 3: num = 1994 -> "MCMXCIV"
+#   1000 = M, 900 = CM, 90 = XC, 4 = IV
 #
 # Constraints:
-#   n == height.length
-#   2 <= n <= 10^5
-#   0 <= height[i] <= 10^4
+#   1 <= num <= 3999
 
 
 class Solution:
-    def maxArea(self, height: list[int]) -> int:
-        left, right = 0, len(height) - 1
-        max_area = 0
-        while left < right:
-            max_area = max(max_area, (right - left) * min(height[left], height[right]))
-            if height[left] < height[right]:
-                left += 1
-            else:
-                right -= 1
-        return max_area
+    def intToRoman(self, num: int) -> str:
+        roman_digits = {
+            1000: "M",
+            900: "CM",
+            500: "D",
+            400: "CD",
+            100: "C",
+            90: "XC",
+            50: "L",
+            40: "XL",
+            10: "X",
+            9: "IX",
+            5: "V",
+            4: "IV",
+            1: "I",
+        }
+        result = ""
+        while num > 0:
+            for value, symbol in roman_digits.items():
+                if num >= value:
+                    num -= value
+                    result += symbol
+                    break
+        return result
 
 
 if __name__ == "__main__":
     s = Solution()
-    assert s.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
-    assert s.maxArea([1, 1]) == 1
-    assert s.maxArea([0, 0]) == 0
-    assert s.maxArea([0, 5]) == 0                       # одна стенка нулевая — воды нет
-    assert s.maxArea([4, 3, 2, 1, 4]) == 16             # крайние линии, хотя внутри ниже
-    assert s.maxArea([1, 2, 1]) == 2
-    assert s.maxArea([1, 2, 4, 3]) == 4
-    assert s.maxArea([2, 3, 4, 5, 18, 17, 6]) == 17     # две высокие соседние: ширина 1
-    assert s.maxArea([1, 3, 2, 5, 25, 24, 5]) == 24
-    assert s.maxArea([5, 5, 5, 5, 5]) == 20
-    assert s.maxArea(list(range(1, 11))) == 25          # возрастающая: 5 * 5
-    assert s.maxArea(list(range(10, 0, -1))) == 25      # убывающая
-    assert s.maxArea([10_000] * 100_000) == 10_000 * 99_999   # максимум по ограничениям: O(n²) не успеет
+    assert s.intToRoman(3749) == "MMMDCCXLIX"
+    assert s.intToRoman(58) == "LVIII"
+    assert s.intToRoman(1994) == "MCMXCIV"
     print("OK")

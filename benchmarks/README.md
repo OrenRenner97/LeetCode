@@ -25,6 +25,7 @@ uv run benchmarks/<файл>.py
 | `palindrome_number.py` | 9 | учебные альтернативы: строка (целиком / один раз / половины), полный и половинный разворот, срезание концов, два указателя по цифрам; random / positive / palindrome |
 | `regular_expression_matching.py` | 10 | учебные альтернативы: рекурсия с кэшем и без, таблица ДП, две строки, НКА Томпсона, `re.fullmatch`; random / matching / adversarial + рост времени на `a*a*…c` |
 | `container_with_most_water.py` | 11 | учебные альтернативы: перебор, два указателя (с `max`/`min`, inline, с пропуском), сортировка по высоте (Python / numpy); random / increasing / equal / hill, n = 10³ и 10⁵ |
+| `integer_to_roman.py` | 12 | учебные альтернативы: жадные (с возвратом в начало таблицы, `while`, `divmod`), таблицы по разрядам, шаблон цифры, готовая таблица 1..3999, унарная запись + замены; пакеты по 10⁵ чисел: all / long / short / small |
 
 ## `bench.py`
 
