@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from algos import to_roman
+from algos import from_roman, to_roman
 from algos.arithmetic import ROMAN_MAX, ROMAN_MIN
 
 # Каноническая римская запись 1..3999: каждый разряд — одна из десяти форм.
@@ -66,3 +66,51 @@ def test_integer_types():
 def test_type_errors(bad):
     with pytest.raises(TypeError):
         to_roman(bad)
+
+
+# ---------- from_roman ----------
+
+def _solution13():
+    path = Path(__file__).resolve().parents[2] / "problems" / "0013_roman_to_integer" / "solution.py"
+    spec = importlib.util.spec_from_file_location("p13_solution", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.Solution()
+
+
+def test_from_roman_leetcode_examples():
+    assert from_roman("III") == 3
+    assert from_roman("LVIII") == 58
+    assert from_roman("MCMXCIV") == 1994
+
+
+def test_from_roman_full_range():
+    sol = _solution13()
+    for n in range(ROMAN_MIN, ROMAN_MAX + 1):
+        r = to_roman(n)
+        assert from_roman(r) == n == sol.romanToInt(r), n
+        assert from_roman(r.lower()) == n, n
+        assert from_roman("".join(list(r))) == n, n      # строка, собранная в рантайме
+
+
+@pytest.mark.parametrize("bad", [
+    "", "IIII", "VV", "VX", "IC", "IM", "XM", "MMMM", "MMMMCMXCIX", "IIV", "IXI", "XCX", "CMD", "DM", "LC",
+    "IVI", "XIIII", "A", "MCMXCIVZ", " XIV", "XIV ", "X I V", "XiV", "Xiv", "ⅩⅣ", "0", "14",
+])
+def test_from_roman_rejects_non_canonical(bad):
+    assert from_roman(bad) is None
+
+
+def test_from_roman_matches_canonical_regex_on_random_strings():
+    import random
+    rng = random.Random(13)
+    for _ in range(20_000):
+        s = "".join(rng.choice("IVXLCDM") for _ in range(rng.randint(1, 8)))
+        expected = _value(s) if CANON.fullmatch(s) else None
+        assert from_roman(s) == expected, s
+
+
+@pytest.mark.parametrize("bad", [None, 14, b"XIV", ["X", "I", "V"]])
+def test_from_roman_type_errors(bad):
+    with pytest.raises(TypeError):
+        from_roman(bad)
