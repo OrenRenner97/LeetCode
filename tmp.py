@@ -1,58 +1,34 @@
-# 13. Roman to Integer
-# https://leetcode.com/problems/roman-to-integer/
+# 14. Longest Common Prefix
+# https://leetcode.com/problems/longest-common-prefix/
 #
-# Семь римских символов:
-#   I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000
+# Дан массив строк strs. Найти самый длинный общий префикс всех строк.
+# Если общего префикса нет — вернуть пустую строку "".
 #
-# Обычно символы идут от больших к меньшим, и значение — их сумма: XXVII = 10 + 10 + 5 + 1 + 1 = 27.
-# Исключение — вычитание: меньший символ перед большим вычитается. Таких пар шесть:
-#   IV = 4, IX = 9, XL = 40, XC = 90, CD = 400, CM = 900
-#
-# Дана римская запись s — вернуть число.
-#
-# Example 1: s = "III"     -> 3
-# Example 2: s = "LVIII"   -> 58     (L = 50, V = 5, III = 3)
-# Example 3: s = "MCMXCIV" -> 1994   (M = 1000, CM = 900, XC = 90, IV = 4)
+# Example 1: strs = ["flower", "flow", "flight"] -> "fl"
+# Example 2: strs = ["dog", "racecar", "car"]    -> ""   (общего префикса нет)
 #
 # Constraints:
-#   1 <= s.length <= 15
-#   s состоит только из символов 'I', 'V', 'X', 'L', 'C', 'D', 'M'
-#   Гарантируется, что s — корректная римская запись числа из диапазона [1, 3999]
+#   1 <= strs.length <= 200
+#   0 <= strs[i].length <= 200
+#   strs[i] состоит только из строчных английских букв (может быть пустой)
 
 
 class Solution:
-    __ROMAN_TO_INT = {
-        "I": 1,
-        "IV": 4,
-        "V": 5,
-        "IX": 9,
-        "X": 10,
-        "XL": 40,
-        "L": 50,
-        "XC": 90,
-        "C": 100,
-        "CD": 400,
-        "D": 500,
-        "CM": 900,
-        "M": 1000
-    }
-
-    def romanToInt(self, s: str) -> int:
-        result: int = 0
-        i: int = 0
-        while i < len(s):
-            if i + 1 < len(s) and s[i:i+2] in self.__ROMAN_TO_INT:
-                result += self.__ROMAN_TO_INT[s[i:i+2]]
-                i += 2
-            else:
-                result += self.__ROMAN_TO_INT[s[i]]
-                i += 1
-        return result
+    def longestCommonPrefix(self, strs: list[str]) -> str:
+        result_common_prefix = strs[0]
+        for word in strs:
+            common_length = min(len(result_common_prefix), len(word))
+            result_common_prefix = result_common_prefix[:common_length]
+            for i in range(min(len(result_common_prefix), len(word))):
+                if word[i] != result_common_prefix[i]:
+                    result_common_prefix = result_common_prefix[:i]
+                    break
+        return result_common_prefix
 
 
 if __name__ == "__main__":
     s = Solution()
-    assert s.romanToInt("III") == 3
-    assert s.romanToInt("LVIII") == 58
-    assert s.romanToInt("MCMXCIV") == 1994
+    assert s.longestCommonPrefix(["flower", "flow", "flight"]) == "fl"
+    assert s.longestCommonPrefix(["dog", "racecar", "car"]) == ""
+    assert s.longestCommonPrefix(["ab", "a"]) == "a"
     print("OK")

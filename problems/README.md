@@ -36,3 +36,4 @@
 | 11 | [Container With Most Water](0011_container_with_most_water/README.md) | два указателя с краёв | `algos.max_container` (пара, `xs`, `min_width`) | — (не нашли убедительного) |
 | 12 | [Integer to Roman](0012_integer_to_roman/README.md) | жадно по 13 номиналам, таблицы по разрядам | `algos.to_roman` (1..3999, иначе `None`; `lowercase`) | — (слишком простая) |
 | 13 | [Roman to Integer](0013_roman_to_integer/README.md) | 13 токенов (пара или символ), вычитание при «меньший перед большим» | `algos.from_roman` (строго: неканоническое → `None`) | — (слишком простая) |
+| 14 | [Longest Common Prefix](0014_longest_common_prefix/README.md) | горизонтальный проход; префикс min и max | `algos.common_prefix` (str/bytes/list/tuple, `sep` — целые компоненты) | — (решили не делать) |

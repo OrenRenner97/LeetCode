@@ -27,6 +27,7 @@ uv run benchmarks/<файл>.py
 | `container_with_most_water.py` | 11 | учебные альтернативы: перебор, два указателя (с `max`/`min`, inline, с пропуском), сортировка по высоте (Python / numpy); random / increasing / equal / hill, n = 10³ и 10⁵ |
 | `integer_to_roman.py` | 12 | учебные альтернативы: жадные (с возвратом в начало таблицы, `while`, `divmod`), таблицы по разрядам, шаблон цифры, готовая таблица 1..3999, унарная запись + замены; пакеты по 10⁵ чисел: all / long / short / small |
 | `roman_to_integer.py` | 13 | учебные альтернативы: токены-пары, сравнение с соседом (слева / справа), сумма + `str.count`, `replace`, регулярка по разрядам, словарь всех записей; пакеты по 10⁵ строк: all / long / short / subtr |
+| `longest_common_prefix.py` | 14 | учебные альтернативы: горизонтально (посимвольно / `startswith` + ранний выход), по столбцам `zip`, min/max, обрезание, бинпоиск по длине, numpy-матрица байт; same / half / lastdiff / firstdiff, n = 200 и 10⁴ |
 
 ## `bench.py`
 

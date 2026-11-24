@@ -21,6 +21,7 @@
 | `max_container(heights, xs=None, min_width=0)` | `two_pointers/container.py` | [11. Container With Most Water](../../problems/0011_container_with_most_water/README.md) | пара линий с максимальной площадью `(x[j] − x[i]) · min(h)`: `Container(left, right, area)` или `None`; произвольные координаты, минимальная ширина | O(n) | — |
 | `to_roman(n, lowercase=False)` | `arithmetic/roman.py` | [12. Integer to Roman](../../problems/0012_integer_to_roman/README.md) | каноническая римская запись; вне `[ROMAN_MIN, ROMAN_MAX]` = [1, 3999] → `None` (нет символа для 5000, MMMM не канонично); `lowercase` — строчные; таблица всех ответов при импорте | O(1) | — |
 | `from_roman(s)` | `arithmetic/roman.py` | [13. Roman to Integer](../../problems/0013_roman_to_integer/README.md) | строгий разбор: только каноническая запись (как у `to_roman`), иначе `None` (`IIII`, `IC`, `MMMM`, смешанный регистр); верхний или нижний регистр | O(len(s)) | — |
+| `common_prefix(items, sep=None)` | `strings/prefix.py` | [14. Longest Common Prefix](../../problems/0014_longest_common_prefix/README.md) | общий префикс str/bytes/list/tuple (тип результата = тип входа), пусто → `None`; `sep` — только целые компоненты (`/usr/`, а не `/usr/l`, как у `os.path.commonprefix`) | O(S) | — |
 | `longest_unique_window(seq, max_repeats=1)` | `sliding_window/unique_window.py` | [3. Longest Substring…](../../problems/0003_longest_substring_without_repeating_characters/README.md) | `[start, end)` самого длинного окна, где каждый элемент встречается ≤ k раз | O(n) | python, numba, c, numpy, cuda |
 | `longest_unique_window_batch(values, offsets, max_repeats=1)` | `sliding_window/unique_window_batch.py` | 3. Longest Substring… | то же для многих последовательностей сразу (CSR) | O(n) | python, numba, numpy, cuda |
 | `median_of_sorted(*arrays)` | `binary_search/sorted_union.py` | [4. Median of Two Sorted Arrays](../../problems/0004_median_of_two_sorted_arrays/README.md) | медиана объединения отсортированных последовательностей без слияния; пусто → `None` | O(log min(m,n)) для 1–2, O(k·log n·log R) для 3+ | numba, c, python (нативные — только для int-массивов numpy) |
@@ -39,7 +40,7 @@
 
 ## Как устроено
 
-**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `automata/`, `sliding_window/`, `two_pointers/`, `binary_search/`, `palindromes/`, `permutations/`, позже `graphs/`, `dp/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
+**Раскладка по технике, а не по номеру задачи** (`hashing/`, `arithmetic/`, `automata/`, `sliding_window/`, `two_pointers/`, `binary_search/`, `palindromes/`, `permutations/`, `strings/`, позже `graphs/`, `dp/`). Одна техника решает десятки задач, и родственные функции оказываются рядом.
 
 **Выбор реализации — `_dispatch.py`:**
 
