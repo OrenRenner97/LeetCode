@@ -8,6 +8,7 @@
 |---------|--------|-----------|------------|-----------|-----------|
 | `find_pair_with_sum(values, target)` | `hashing/pair_sum.py` | [1. Two Sum](../../problems/0001_two_sum/README.md) | индексы пары с суммой `target` или `None` | O(n) | python, numpy, numba, c, cuda |
 | `find_pairs_batch(values, offsets, targets)` | `hashing/pair_sum_batch.py` | 1. Two Sum | много независимых Two Sum за один вызов (формат CSR) | O(n) | python, numpy, numba, cuda |
+| `k_sum(values, target=0, k=3)` | `hashing/k_sum.py` | [15. 3Sum](../../problems/0015_3sum/README.md) | все различные наборы из k элементов с суммой `target`: кортежи по возрастанию, список отсортирован; только целые (float — `TypeError`); k = 3 — 3Sum, k = 4 — 4Sum | O(n + u^(k−1)), u — различных значений | — |
 | `add_digits(a, b, base=10)` | `arithmetic/digits.py` | [2. Add Two Numbers](../../problems/0002_add_two_numbers/README.md) | длинное сложение массивов цифр, любое основание | O(n) | python, numpy, numba, c, cuda |
 | `sub_digits(a, b, base=10)` | `arithmetic/digits.py` | 2. Add Two Numbers | длинное вычитание (a ≥ b) | O(n) | python |
 | `sum_limbs(rows, base=2**64)` | `arithmetic/sum_limbs.py` | 2. Add Two Numbers | сумма N длинных чисел, carry-save | O(N·L) | python, numpy, numba, cuda |

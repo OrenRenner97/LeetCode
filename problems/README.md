@@ -37,3 +37,4 @@
 | 12 | [Integer to Roman](0012_integer_to_roman/README.md) | жадно по 13 номиналам, таблицы по разрядам | `algos.to_roman` (1..3999, иначе `None`; `lowercase`) | — (слишком простая) |
 | 13 | [Roman to Integer](0013_roman_to_integer/README.md) | 13 токенов (пара или символ), вычитание при «меньший перед большим» | `algos.from_roman` (строго: неканоническое → `None`) | — (слишком простая) |
 | 14 | [Longest Common Prefix](0014_longest_common_prefix/README.md) | горизонтальный проход; префикс min и max | `algos.common_prefix` (str/bytes/list/tuple, `sep` — целые компоненты) | — (решили не делать) |
+| 15 | [3Sum](0015_3sum/README.md) | перебор O(n³); сортировка + два указателя O(n²), Counter по значениям | `algos.k_sum` (любые k и target, только целые) | — (не делали) |
